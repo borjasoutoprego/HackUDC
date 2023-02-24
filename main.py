@@ -18,12 +18,14 @@ df.isnull().sum()
 df.duplicated(subset=['Coordena_2', 'Coordena_3']).sum()
 # no hay duplicados en las coordenadas
 
-for i in range(len(df['Longitud'])) :
-    df['Longitud'][i] = df['Longitud'][i].split(' ')[0]
-    df['Longitud'][i] = df['Longitud'][i].replace('.', '')
-    if len(df['Longitud'][i].split('-')) == 2:
-        df['Longitud'][i] = int(df['Longitud'][i].split('-')[0] + df['Longitud'][i].split('-')[1]) / 2
-df['Longitud'] = df['Longitud'].astype(int)
+def get_Longitud(longitud):
+    for i in range(len(df['Longitud'])) :
+        longitud[i] = longitud[i].split(' ')[0]
+        longitud[i] = longitud[i].replace('.', '')
+        if len(longitud[i].split('-')) == 2:
+            longitud[i] = int(longitud[i].split('-')[0] + longitud[i].split('-')[1]) / 2
+    longitud = longitud.astype(int)
+    return longitud
 
 def menu():
     print("Actividades dispoñíbeis: ")
@@ -32,6 +34,7 @@ def menu():
     return choice
 
 def filtrado():
+    df['longitud'] = get_Longitud(df['Longitud'])
     choice = int(menu())
     if choice == 1:
         df1 = df[df['Composici'] == 'Arena']
