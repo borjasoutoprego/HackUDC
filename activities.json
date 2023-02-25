@@ -22,8 +22,8 @@
 
 
     "surf": {
-        "filtrado1": {"Longitud": "100,inf", "Grado_ocup": ["Muy bajo", "Bajo", "Medio / Bajo", "Medio"], "Nudismo": "NULL", "Bandera_az": "Sí",
-                      "Auxilio_y_": "Sí", "Forma_de_a": ["A pie muy dificil"], "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+        "filtrado1": {"Longitud": "100,inf", "Grado_ocup": ["Muy bajo", "Bajo", "Medio / Bajo", "Medio"], "Nudismo": "NULL", "Bandera_az": "NULL",
+                      "Auxilio_y_": "NULL", "Forma_de_a": ["A pie muy dificil"], "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
                       "Zona_infan": "NULL", "Submarinis": "NULL"},
 
         "filtrado2": {"is_day": "max", "feelslike": "max", "wind": "min",
@@ -62,7 +62,48 @@
         "filtrado2": {"is_day": "max", "feelslike": "max", "wind": "min",
                       "cloud": "False", "rain": "min", "vis": "False", "uv": "min", "waves": "False"}
     
-    }
+    },
 
+
+    "submarinismo": {
+        "filtrado1": {"Longitud": "NULL", "Grado_ocup": "NULL", "Nudismo": "NULL", "Bandera_az": "NULL",
+                      "Auxilio_y_": "NULL", "Forma_de_a": ["A pie muy dificil"], "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "Sí"},
+
+        "filtrado2": {"is_day": "max", "feelslike": "False", "wind": "False",
+                      "cloud": "False", "rain": "min", "vis": "False", "uv": "False", "waves": "min"}
+    
+    },
+
+
+    "cometa": {
+        "filtrado1": {"Longitud": "NULL", "Grado_ocup": ["Muy bajo", "Bajo", "Medio / Bajo", "Medio"], "Nudismo": "NULL", "Bandera_az": "NULL",
+                      "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "max", "feelslike": "False", "wind": "max",
+                      "cloud": "False", "rain": "min", "vis": "max", "uv": "False", "waves": "False"}
+    
+    },
+
+    "familia": {
+        "filtrado1": {"Longitud": "NULL", "Grado_ocup": "NULL", "Nudismo": "NULL", "Bandera_az": "Sí",
+                      "Auxilio_y_": "Sí", "Forma_de_a": ["A pie muy dificil"], "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "Sí",
+                      "Zona_infan": "Sí", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "max", "feelslike": "False", "wind": "False",
+                      "cloud": "False", "rain": "min", "vis": "False", "uv": "False", "waves": "False"}
+    
+    },
+
+    "estrellas": {
+        "filtrado1": {"Longitud": "NULL", "Grado_ocup": "NULL", "Nudismo": "NULL", "Bandera_az": "NULL",
+                      "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "min", "feelslike": "max", "wind": "min",
+                      "cloud": "min", "rain": "min", "vis": "max", "uv": "False", "waves": "False"}
+    
+    }
 
 }
