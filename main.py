@@ -17,10 +17,10 @@ def get_Longitud(longitud):
             longitud[i] = int(longitud[i].split('-')[0] + longitud[i].split('-')[1]) / 2
     return longitud
 
-def menu(person):
+def menu(person,option):
     print("Actividades disponibles: ")
     print("1: Tomar el sol\n2: Nadar\n3: Surf\n4: Pasear\n5: Nudismo\n6: Deporte pelota")
-    choice = int(input(f"Escoja la actividad de la persona {person+1}: "))
+    choice = int(input(f"Escoge la actividad de la persona {person+1} (actividad {option+1}): "))
 
     if choice == 1:
         return("sol")
@@ -112,29 +112,58 @@ def search_near(df, location, dist):
 
 
 def main(df):
-    n = int(input("¿Cuántas personas vais a ir a la playa?: "))
-    location = input("Elige la ubicación: ")
-    dist = int(input("Introduce la distancia máxima de búsqueda (en km): "))/100
-    day_delay = int(input("En cuantos dias vas a ir a la playa (hoy:0, mañana:1 ... [max(6)]: "))
-    hour = int(input("Indica la hora (en formato 24h): "))
+    while True:
+        try:
+            n = int(input("¿Cuántas personas vais a ir a la playa?: "))
+            location = input("Elige la ubicación: ")
+            dist = int(input("Introduce la distancia máxima de búsqueda (en km): "))/100
+            day_delay = int(input("En cuantos dias vas a ir a la playa (hoy:0, mañana:1 ... [max(6)]: "))
+            hour = int(input("Indica la hora (en formato 24h): "))
+        except:
+            print("Error")
+        else:
+            break
+        
     
     results = []
 
     for person in range(n):
-        activity = menu(person)
-        df_filtered1 = filter1(df, activity).reset_index()
-        df_near = search_near(df_filtered1, location, dist).reset_index()
-        df_raw_clima = table_processing(df_near, day_delay, hour)
-        df_filtered2 = filter2(df_raw_clima, activity)
-        result = order_dataframe(df_filtered2, activity)
-        if n == 1:
-            print(result)
-            sys.exit()
-        else:
-            results.append(result)
-            print(result)
-
-
+        while True:
+            try:
+                n_options = int(input("¿Cuántas actividades quieres hacer? "))
+            except:
+                print("Error")
+            else:
+                break
+        for option in range(n_options):
+            while True:
+                try:
+                    activity = menu(person, option)
+                    df_filtered1 = filter1(df, activity).reset_index()
+                    df_near = search_near(df_filtered1, location, dist).reset_index()
+                    df_raw_clima = table_processing(df_near, day_delay, hour)
+                    df_filtered2 = filter2(df_raw_clima, activity)
+                    assert(len(df_filtered2.index) != 0)
+                except:    
+                    print("Lo siento, no se han encontrado resultados 😕")
+                    e = input("¿Quieres cerrar el programa? Y/N ")
+                    if e in ("Y", "y"):
+                        sys.exit()
+                else:
+                    break
+            result = order_dataframe(df_filtered2, activity)
+            if n == 1 and n_options == 1:
+                if len(result.index) >= 5:
+                    print(result[:5])
+                else:
+                    print(result)
+                sys.exit()
+            else:
+                results.append(result)
+                if len(result.index) >= 5:
+                    print(result[:5])
+                else:
+                    print(result)
 
     df_final = results[0].copy()
 
@@ -149,7 +178,10 @@ def main(df):
     print("----------")
     print("FINAL")
     print("----------")
-    print(df_final.sort_values(by="points", ascending=False, ignore_index=True))
+    if len(df_final.index) >= 5:
+        print(df_final.sort_values(by="points", ascending=False, ignore_index=True)[:5])
+    else:
+        print(df_final.sort_values(by="points", ascending=False, ignore_index=True))
         
 
 
