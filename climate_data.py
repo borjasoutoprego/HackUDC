@@ -3,6 +3,9 @@
 
 import requests
 import pandas as pd
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def dms_to_dd(dms):
     raw = dms.split(" ")
@@ -22,7 +25,7 @@ def get_data(lat_dms, lon_dms, day_delay, hour):
     lat = dms_to_dd(lat_dms)
     lon = dms_to_dd(lon_dms)
 
-    key = "090991a2a61a4c489b9103146232402"
+    key = os.environ['KEY']
     query = lat + "," + lon
     response = requests.get(f"http://api.weatherapi.com/v1/forecast.json?key={key}&q={query}&days={day_delay+1}&hour={hour}")
     response_wave = requests.get(f"https://marine-api.open-meteo.com/v1/marine?latitude={lat}&longitude={lon}&hourly=wave_height")
