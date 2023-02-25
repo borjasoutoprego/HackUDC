@@ -1,0 +1,68 @@
+{
+    "sol": {
+        "filtrado1": {"Longitud": "NULL", "Grado_ocup": "NULL", "Nudismo": "NULL", "Bandera_az": "NULL",
+                      "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "True",
+                      "cloud": "True", "rain": "True", "vis": "False", "uv": "True", "waves": "False"}
+    
+    },
+
+
+    "nadar": {
+        "filtrado1": {"Longitud": "NULL", "Grado_ocup": "NULL", "Nudismo": "NULL", "Bandera_az": "Sí",
+                      "Auxilio_y_": "Sí", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "False",
+                      "cloud": "False", "rain": "True", "vis": "True", "uv": "False", "waves": "True"}
+    
+    },
+
+
+    "surf": {
+        "filtrado1": {"Longitud": "100,inf", "Grado_ocup": ["Muy bajo", "Bajo", "Medio / Bajo", "Medio"], "Nudismo": "NULL", "Bandera_az": "Sí",
+                      "Auxilio_y_": "Sí", "Forma_de_a": ["A pie muy dificil"], "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "True",
+                      "cloud": "False", "rain": "True", "vis": "True", "uv": "False", "waves": "True"}
+    
+    },
+
+
+    "pasear": {
+        "filtrado1": {"Longitud": "300,inf", "Grado_ocup": "NULL", "Nudismo": "NULL", "Bandera_az": "NULL",
+                      "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "True", "feelslike": "False", "wind": "True",
+                      "cloud": "False", "rain": "True", "vis": "False", "uv": "False", "waves": "False"}
+    
+    },
+
+
+    "nudismo": {
+        "filtrado1": {"Longitud": "NULL", "Grado_ocup": "NULL", "Nudismo": ["Sí", "Tolerado", "Parcial"], "Bandera_az": "NULL",
+                      "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "True",
+                      "cloud": "False", "rain": "True", "vis": "False", "uv": "True", "waves": "False"}
+    
+    },
+
+
+    "deporte_pelota": {
+        "filtrado1": {"Longitud": "NULL", "Grado_ocup": ["Muy bajo", "Bajo", "Medio / Bajo", "Medio"], "Nudismo": "NULL", "Bandera_az": "NULL",
+                      "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
+                      "Zona_infan": "NULL", "Submarinis": "NULL"},
+
+        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "True",
+                      "cloud": "False", "rain": "True", "vis": "False", "uv": "True", "waves": "False"}
+    
+    }
+
+
+}
