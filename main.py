@@ -1,8 +1,11 @@
-from climate_data import table_processing 
+from climate_data import table_processing, dms_to_dd
 import pandas as pd
 import json
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
 
-
+with open('activities.json') as file:
+        ACTIVITIES = json.load(file)
 
 def get_Longitud(longitud):
     for i in range(len(df['Longitud'])) :
@@ -33,10 +36,7 @@ def menu():
 
 def filter1(df, activity):
 
-    with open('activities.json') as file:
-        activities = json.load(file)
-    
-    filters = activities[activity]["filtrado1"]
+    filters = ACTIVITIES[activity]["filtrado1"]
     for filter in filters.keys():
         if filters[filter] == "NULL":
             continue
@@ -59,13 +59,10 @@ def filter1(df, activity):
 
 def filter2(df, activity):
     
-    with open('activities.json') as file:
-        activities = json.load(file)
-
-    filters = activities[activity]["filtrado2"]
+    filters = ACTIVITIES[activity]["filtrado2"]
     final_columns = ["Nombre", "Coordena_2", "Coordena_3"]
     for filter in filters.keys():
-        if filters[filter] == "True" :
+        if filters[filter] != "False" :
             final_columns.append(filter)
 
     return df[final_columns]
@@ -75,47 +72,65 @@ def filter2(df, activity):
 
 
 def order_dataframe(df, activity):
-    #loc = input("Indícame en qué ayuntamiento vas a estar: ")    SI HACE FALTA
-    rankDict = dict()
+
+    filters = ACTIVITIES[activity]["filtrado2"]
+    df_points = pd.DataFrame()
+
     for d in df.iloc[:, 3:]:
-        if d == 'waves':
-            if activity == 'surf':
-                order = False
-            else:
-                order = True
-        elif d == 'wind' or d == 'cloud':
-            order = True
-        else:
-            order = False
+        if filters[d] == "max":
+            order = max
+        elif filters[d] == "min":
+            order = min
+        df_points[f"points_{d}"] = (df[d] == order(df[d])).astype(int)
         
-        df_order = df.sort_values(by=[d], ascending=order) ## intentar quedarse solo con la columna d y la que tiene los nombres de las playas, por eficiencia --> df[nombres]
-        print(df_order)
-    for NombrePlaya in df["Nombre"]:
-        index = df_order[df_order["Nombre"] == NombrePlaya].index
-        if NombrePlaya not in rankDict:
-            rankDict[NombrePlaya] = index
-        else:
-            rankDict[NombrePlaya] += index
+    df = df.assign(points=df_points.sum(axis=1))
+    
+    df = df.sort_values(by="points", ascending=False, ignore_index=True)
+    print(df)
+    
 
-    #best = sorted(rankDict.values()) ####################################
-    print(rankDict)
+def search_near(df):
+    df["diff_lat"] = pd.Series(dtype='float')
+    df["diff_lon"] = pd.Series(dtype='float')
+    geolocator = Nominatim(user_agent="HackatonAPP")
+    user_loc = geolocator.geocode('Ferrol') ##################
+    
+    for i, row in df.iterrows():
+        lat = float(dms_to_dd(row['Coordena_3']))
+        lon = float(dms_to_dd(row['Coordena_2']))
+        df.at[i,'diff_lat'] = abs(lat-user_loc.latitude)
+        df.at[i,'diff_lon'] = abs(lon-user_loc.longitude)
 
+    df = df[df['diff_lat'] <= 0.5]
+    df = df[df['diff_lon'] <= 0.5]
 
+    return df
 
 
 if __name__ == "__main__":
 
 
     df = pd.read_csv("playas.csv")
+    ######## Limpieza de coordenadas mal expresadas
+    for i, row in df.iterrows():
+        if (len(row['Coordena_3'].split(" ")) != 4) or (len(row['Coordena_2'].split(" ")) != 4):
+            df = df.drop(i)
+        else:
+            df.at[i,'Coordena_3'] = df.at[i,'Coordena_3'].replace(" \'", "\' ").replace("\'\'\'", "\"")
+            df.at[i,'Coordena_2'] = df.at[i,'Coordena_2'].replace(" \'", "\' ").replace("\'\'\'", "\"")
+    df = df.reset_index()
+    ########
+
     df = df[["Nombre", "Longitud", "Grado_ocup", "Nudismo", "Bandera_az", "Auxilio_y_", "Forma_de_a",
             "Acceso_dis", "Autobús", "Aseos", "Zona_infan", "Submarinis", "Coordena_2", "Coordena_3"]]
     df['Longitud'] = get_Longitud(df['Longitud'])
     activity = menu()
     df_filtered1 = filter1(df, activity).reset_index()
-    df_raw_clima = table_processing(df_filtered1[:5], 0, 17)
+    # UBICACION
+    df_near = search_near(df_filtered1).reset_index()
+    df_raw_clima = table_processing(df_near[:5], 0, 17)
     df_filtered2 = filter2(df_raw_clima, activity)
 
-    print(df_filtered2)
     order_dataframe(df_filtered2, activity)
 
 

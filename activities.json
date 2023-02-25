@@ -4,8 +4,8 @@
                       "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
                       "Zona_infan": "NULL", "Submarinis": "NULL"},
 
-        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "True",
-                      "cloud": "True", "rain": "True", "vis": "False", "uv": "True", "waves": "False"}
+        "filtrado2": {"is_day": "max", "feelslike": "max", "wind": "min",
+                      "cloud": "min", "rain": "min", "vis": "False", "uv": "max", "waves": "False"}
     
     },
 
@@ -15,8 +15,8 @@
                       "Auxilio_y_": "Sí", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
                       "Zona_infan": "NULL", "Submarinis": "NULL"},
 
-        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "False",
-                      "cloud": "False", "rain": "True", "vis": "True", "uv": "False", "waves": "True"}
+        "filtrado2": {"is_day": "max", "feelslike": "max", "wind": "False",
+                      "cloud": "False", "rain": "min", "vis": "max", "uv": "False", "waves": "min"}
     
     },
 
@@ -26,8 +26,8 @@
                       "Auxilio_y_": "Sí", "Forma_de_a": ["A pie muy dificil"], "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
                       "Zona_infan": "NULL", "Submarinis": "NULL"},
 
-        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "True",
-                      "cloud": "False", "rain": "True", "vis": "True", "uv": "False", "waves": "True"}
+        "filtrado2": {"is_day": "max", "feelslike": "max", "wind": "min",
+                      "cloud": "False", "rain": "min", "vis": "max", "uv": "False", "waves": "max"}
     
     },
 
@@ -37,8 +37,8 @@
                       "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
                       "Zona_infan": "NULL", "Submarinis": "NULL"},
 
-        "filtrado2": {"is_day": "True", "feelslike": "False", "wind": "True",
-                      "cloud": "False", "rain": "True", "vis": "False", "uv": "False", "waves": "False"}
+        "filtrado2": {"is_day": "max", "feelslike": "False", "wind": "min",
+                      "cloud": "False", "rain": "min", "vis": "False", "uv": "False", "waves": "False"}
     
     },
 
@@ -48,8 +48,8 @@
                       "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
                       "Zona_infan": "NULL", "Submarinis": "NULL"},
 
-        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "True",
-                      "cloud": "False", "rain": "True", "vis": "False", "uv": "True", "waves": "False"}
+        "filtrado2": {"is_day": "max", "feelslike": "max", "wind": "min",
+                      "cloud": "False", "rain": "min", "vis": "False", "uv": "max", "waves": "False"}
     
     },
 
@@ -59,8 +59,8 @@
                       "Auxilio_y_": "NULL", "Forma_de_a": "NULL", "Acceso_dis": "NULL", "Autobús": "NULL", "Aseos": "NULL",
                       "Zona_infan": "NULL", "Submarinis": "NULL"},
 
-        "filtrado2": {"is_day": "True", "feelslike": "True", "wind": "True",
-                      "cloud": "False", "rain": "True", "vis": "False", "uv": "True", "waves": "False"}
+        "filtrado2": {"is_day": "max", "feelslike": "max", "wind": "min",
+                      "cloud": "False", "rain": "min", "vis": "False", "uv": "min", "waves": "False"}
     
     }
 
