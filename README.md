@@ -1,4 +1,4 @@
-# HackUDC
+# Sistema Recomendador de Arenales HackUDC
 
 **Año 2023**
 
